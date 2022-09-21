@@ -13,20 +13,20 @@ const server = http.createServer((req, res) => {
             });
             break;
         case '/image':
-            fs.readFile('media/두꺼비.jpg', 'utf8', (err, html) => {
+            fs.readFile('media/두꺼비.jpg', (err, html) => {
                 res.writeHead(200, { 'Content-Type': 'image/jpg' });
                 res.end(html);
             });
             break;
 
         case '/audio':
-            fs.readFile('media/file_example_MP3_700KB.mp3', 'utf8', (err, html) => {
+            fs.readFile('media/file_example_MP3_700KB.mp3', (err, html) => {
                 res.writeHead(200, { 'Content-Type': 'audio/mp3' });
                 res.end(html);
             });
             break;
         case '/video':
-            fs.readFile('media/file_example_MP4_480_1_5MG.mp4', 'utf8', (err, html) => {
+            fs.readFile('media/file_example_MP4_480_1_5MG.mp4', (err, html) => {
                 res.writeHead(200, { 'Content-Type': 'video/mp4' });
                 res.end(html);
             });

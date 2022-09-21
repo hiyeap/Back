@@ -1,9 +1,9 @@
 const http = require('http');
 const fs = require('fs');
 
-const server = http.createServer((req, res)=> {
-    fs.readFile('media/두꺼비.jpg', 'utf8', (err, image)=>{
-        res.writeHead(200, {'Content-Type':'image/jpg'});
+const server = http.createServer((req, res) => {
+    fs.readFile('media/고양이.jpg', (err, image) => {
+        res.writeHead(200, {'Content-Type': 'image/jpg'});
         res.end(image);
     });
 });
