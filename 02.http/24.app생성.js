@@ -9,7 +9,7 @@ http.createServer((req, res) => {
     let pathname = url.parse(req.url).pathname;
     let query = url.parse(req.url, true).query;
     switch (pathname) {
-        case '/':
+        case '/':        // url에 아무것도 들어오지 않을때 
             if (query.id === undefined) {   // 초기 화면
                 fs.readdir('data', (err, files) => {
                     const title = '웹 기술';
