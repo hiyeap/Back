@@ -11,7 +11,7 @@ http.createServer((req, res) => {
         case '/':           // 초기 홈 화면
             const conn = mysql.createConnection(config);
             const sql = `SELECT * FROM tigers WHERE isDeleted=0;`;
-            conn.query(sql, (err, rows, fields)=>{
+            conn.query(sql, (err, rows, fields) => {
                 if (err)
                     throw err;
                 let trs = template.trsGen(rows);
