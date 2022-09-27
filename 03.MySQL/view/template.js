@@ -15,7 +15,7 @@ module.exports = {
             </style>
         </head>
         <body>
-        <div class="container-fluid p-5 bg-primary text-white text-center">
+        <div class="container-fluid p-5 bg-danger text-white text-center">
             <h1>기아 타이거즈 선수단</h1>
             <button class="btn btn-light" onclick="location.href='/create'">추가</button>
         </div>
@@ -50,8 +50,8 @@ module.exports = {
             trs += `<td>${row.id}</td><td>${row.player}</td>`
             trs += `<td>${row.backNo}</td><td>${row.position}</td>`
             trs += `<td>
-                        <a href="/update?id=${row.id}">수정</a> 
-                        <a href="/delete?id=${row.id}">삭제</a>
+                        <button type="button" class="btn btn-info" onclick="location.href='/update?id=${row.id}'">수정</button> 
+                        <button type="button" class="btn btn-warning" onclick="location.href='/delete?id=${row.id}'">삭제</button>
                     </td>`
             trs += '</tr>';
         }
@@ -74,7 +74,7 @@ module.exports = {
             </style>
         </head>
         <body>
-        <div class="container-fluid p-5 bg-primary text-white text-center">
+        <div class="container-fluid p-5 bg-danger text-white text-center">
             <h1>기아 타이거즈 선수단</h1>
             <button class="btn btn-light" onclick="location.href='/'">홈으로</button>
         </div>
@@ -95,7 +95,7 @@ module.exports = {
                             <td>포지션</td><td><input type="text" name="position"></td>
                         </tr>
                         <tr>
-                        <td colspan="2"><input type="submit" value="추가"></td>
+                        <td colspan="2"><button class="btn btn-light" type="submit">추가</button></td>
                     </tr>
                     </table>
                 </form>
@@ -123,7 +123,7 @@ module.exports = {
             </style>
         </head>
         <body>
-        <div class="container-fluid p-5 bg-primary text-white text-center">
+        <div class="container-fluid p-5 bg-danger text-white text-center">
             <h1>기아 타이거즈 선수단</h1>
             <button class="btn btn-light" onclick="location.href='/'">홈으로</button>
         </div>
@@ -145,7 +145,7 @@ module.exports = {
                             <td>포지션</td><td><input type="text" name="position" value="${position}"></td>
                         </tr>
                         <tr>
-                        <td colspan="2"><input type="submit" value="수정"></td>
+                        <td colspan="2"><button class="btn btn-light" type="submit">수정</button></td>
                     </tr>
                     </table>
                 </form>
@@ -156,6 +156,26 @@ module.exports = {
         </body>
         </html>
         `;
+    },
+    deleteForm: function (id) {
+        return `<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Document</title>
+        </head>
+        <body>
+            <script>
+                let answer = confirm('정말로 삭제하시겠습니까?');
+                if(answer)
+                    location.href = '/deleteConfirm?id=${id}';
+                else
+                    location.href = '/';
+            </script>
+        </body>
+        </html>`;
     }
     
 }

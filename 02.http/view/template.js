@@ -102,5 +102,4 @@ module.exports = {
             <button onclick="location.href='/?id=${title}'">취소</button>
         `;
     }
-
 } // module.exports 끝
