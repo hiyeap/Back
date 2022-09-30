@@ -1,46 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-    <title>기아 타이거즈</title>
+    <title>기아 타이거즈 선수단</title>
     <style>
-        th,
-        td {
+        td,
+        th {
             text-align: center;
+            vertical-align: middle;
         }
     </style>
 </head>
 
 <body>
-    <div class="container-fluid p-5 bg-danger text-white text-center">
-        <h5>기아 타이거즈 선수단</h5>
-        <img src="/tigers/emblem.jpg" height="300">
-        <br><br>
-        <button class="btn btn-light" onclick="location.href='/create'">추가</button>
-    </div>
-    <hr>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <a class="navbar-brand" href="#">
+                    <img src="/tigers/tigers.jpg" alt="로고" height="64">
+                </a>
+                <ul class="navbar-nav">
+                    <li class="nav-item" style="margin-left: 100px;">
+                        <a class="nav-link" href="/create">추가 <i class="fa-solid fa-user-plus"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container mt-3">
         <div class="row">
+            <!-- Grid 적용 -->
             <div class="col-2"></div>
             <div class="col-8">
                 <table class="table">
                     <tr>
                         <th>ID</th>
                         <th>선수명</th>
-                        <th>이미지</th>
+                        <th>사진</th>
                         <th>백넘버</th>
                         <th>포지션</th>
                         <th>수정/삭제</th>
                     </tr>
-                    <% for (let row of rows){ %>
+                    <% for(let row of rows) { %>
                         <tr>
                             <td>
                                 <%= row.id %>
@@ -56,8 +65,8 @@
                                 <%= row.position %>
                             </td>
                             <td>
-                                <a href='/update/<%= row.id %>'"><i class=" fa-regular fa-pen-to-square"></i></a>
-                                <a href='/delete/<%= row.id %>'"><i class=" fa-solid fa-user-minus"></i></a>
+                                <a href="/update/<%= row.id %>"><i class="fa-regular fa-pen-to-square"></i></a>&nbsp;
+                                <a href="/delete/<%= row.id %>"><i class="fa-solid fa-user-minus"></i></a>
                             </td>
                         </tr>
                         <% } %>
