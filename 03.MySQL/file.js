@@ -1,6 +1,6 @@
 /* npm install mysql
 alter user 'gisuser'@'%' identified with mysql_native_password by '12345';
-
+*/
 
 config = {
     host: 'localhost',
@@ -15,4 +15,3 @@ const fs = require('fs');
 fs.writeFile('mysql.json', JSON.stringify(config), err=>{
 
 });
-*/
