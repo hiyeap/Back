@@ -15,7 +15,7 @@ CREATE TABLE [if not exists] tigers (
 	id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	player VARCHAR(10) NOT NULL,
 	backNo INT,
-	POSITION VARCHAR(10)
+	position VARCHAR(10)
 );
 INSERT INTO tigers
 	VALUES (DEFAULT, '양현종', 54, '투수');
