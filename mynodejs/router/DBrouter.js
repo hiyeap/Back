@@ -16,9 +16,13 @@ DBrouter.post("/login", (req, res) => {
       // 2. Login라우터에서 LoginS.ejs파일을 랜더링
       // 3. 랜더링할 때 로그인에 성공한 id값을 전송
       // 4. ejs파일에서 로그인에 성공한 id값을 출력!
-      console.log("검색된 데이터의 수 : " + row.length);
+
+      req.session.user = id;
+
+      console.log("session영역에 id저장 성공" + req.session.user);
+
       res.render("LoginS", {
-        id: id,
+        id_name: id,
       });
     } else if (row.length == 0) {
       // 로그인 실패
@@ -37,7 +41,7 @@ DBrouter.post("/JoinDB", (req, res) => {
   conn.query(sql, [id, pw, nick], (err, row) => {
     if (!err) {
       console.log("입력성공 : " + row);
-      res.redirect("http://127.0.0.1:5500/mynodejs/public/ex06Main.html");
+      res.redirect("http://127.0.0.1:3000/Main");
     } else {
       console.log("입력실패 : " + err);
     }
@@ -57,7 +61,7 @@ DBrouter.get("/Delete", (req, res) => {
       console.log("삭제실패 : " + err);
     } else if (row.affectedRows > 0) {
       console.log("명령에 성공한 수 : " + row.affectedRows);
-      res.redirect("http://127.0.0.1:5500/mynodejs/public/ex06Main.html");
+      res.redirect("http://127.0.0.1:3000/Main");
     } else if (row.affectedRows == 0) {
       console.log("삭제된 값이 없습니다.");
     }
@@ -75,7 +79,7 @@ DBrouter.post("/Update", (req, res) => {
       console.log("수정실패 : " + err);
     } else if (row.affectedRows > 0) {
       console.log("명령에 성공한 수 : " + row.affectedRows);
-      res.redirect("http://127.0.0.1:5500/mynodejs/public/ex06Main.html");
+      res.redirect("http://127.0.0.1:3000/Main");
     } else if (row.affectedRows == 0) {
       console.log("수정된 값이 없습니다.");
     }
@@ -126,10 +130,29 @@ DBrouter.get("/SelectDelete", (req, res) => {
       console.log("삭제실패 : " + err);
     } else if (row.affectedRows > 0) {
       console.log("명령에 성공한 수 : " + row.affectedRows);
-      res.redirect("http://127.0.0.1:5500/mynodejs/public/ex06Main.html");
+      res.redirect("http://127.0.0.1:3000/Main");
     } else if (row.affectedRows == 0) {
       console.log("삭제된 값이 없습니다.");
     }
+  });
+});
+
+DBrouter.get("/Main", (req, res) => {
+  res.render("Main", {
+    id: req.session.user,
+  });
+});
+
+DBrouter.get("/Logout", (req, res) => {
+  delete req.session.user;
+
+  res.render("Main", {
+    id: req.session.user, // null이 넘어감
+  });
+});
+
+DBrouter.get("/message", (req, res) => {
+  res.render("message", {
   });
 });
 
