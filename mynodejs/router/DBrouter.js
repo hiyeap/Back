@@ -151,9 +151,4 @@ DBrouter.get("/Logout", (req, res) => {
   });
 });
 
-DBrouter.get("/message", (req, res) => {
-  res.render("message", {
-  });
-});
-
 module.exports = DBrouter;
