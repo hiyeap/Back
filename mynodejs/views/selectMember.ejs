@@ -26,19 +26,20 @@
                         <td>Addr</td>
                         <td>삭제여부</td>
                     </tr>
-                    <% for(let i=0; i<result.length; i++){ %>
+                    <% for(let i=0; i<row_name.length; i++){ %>
                         <tr>
                             <td>
-                                <%= result[i].email %>
+                                <%= row_name[i].email %>
                             </td>
                             <td>
-                                <%= result[i].tel %>
+                                <%= row_name[i].tel %>
                             </td>
                             <td>
-                                <%= result[i].address %>
+                                <%= row_name[i].address %>
                             </td>
                             <td>
-                                check
+                                <a href="http://127.0.0.1:3000/MessageDelete?email=<%=row_name[i].email %>">삭제</a>
+                                <!-- MessageDelete 라우터를 생성하고 클릭한 해당 이메일의 정보를 삭제하시오. -->
                             </td>
                         </tr>
                         <% } %>
