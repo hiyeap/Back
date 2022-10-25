@@ -21,14 +21,16 @@
 			<nav>
 				<%if(user==null){ %>
 					<a href="#menu">로그인</a>
-					<% }else if(user.email=="admin" ) { %>
+					<% }else { %>
 						<!-- admin 계정만 볼 수 있는 회원정보관리 링크를 만드시오. -->
-						<a href="http://127.0.0.1:3000/MessageMember">전체회원정보관리</a>
-						<% }else{ %>
-							<a href="http://127.0.0.1:3000/MessageLogout">로그아웃</a>
+						<%if(user.email=="admin") { %>
+							<a href="http://127.0.0.1:3000/MessageMemberSelect">전체회원정보관리</a>
 							<% } %>
+								<a href="http://127.0.0.1:3000/MessageUpdate">정보수정</a>
+								<a href="http://127.0.0.1:3000/MessageLogout">로그아웃</a>
 								<!-- 1. Logout라우터를 만들고 실행 후 email 세션값을 삭제시키시오. 
 							     2. 원래 Message페이지를 랜더링 하시오.-->
+								<% } %>
 			</nav>
 		</header>
 
@@ -149,11 +151,18 @@
 					<header class="major">
 						<h2>나에게 온 메세지 확인하기</h2>
 					</header>
-					<p></p>
-					<ul class="actions">
-						<li>로그인을 하세요.</li>
-						<li><a href="#" class="button next scrolly">전체삭제하기</a></li>
+					<ul class="actions"></ul>
+					<%if(user!=null){ for(let i=0; i<row_name.length;i++){%>
+							<li>보내는 사람 : <%= row_name[i].send %> </li>
+							<li>내용 : <%= row_name[i].content %></li>
+							<li>시간 : <%= row_name[i].send_date %> </li>
 					</ul>
+						<% }}else{ %>
+							<ul class="actions">
+								<li>로그인을 하세요.</li>
+								<li><a href="#" class="button next scrolly">전체삭제하기</a></li>
+							</ul>
+							<% } %>
 				</div>
 			</section>
 
@@ -163,19 +172,19 @@
 		<section id="contact">
 			<div class="inner">
 				<section>
-					<form>
+					<form action="http://127.0.0.1:3000/MessageSend" method="post">
 						<div class="field half first">
 							<label for="name">Name</label>
-							<input type="text" id="name" placeholder="보내는 사람 이름" />
+							<input type="text" name="send" id="name" placeholder="보내는 사람 이름" />
 						</div>
 						<div class="field half">
 							<label for="email">Email</label>
-							<input type="text" id="email" placeholder="보낼 사람 이메일" />
+							<input type="text" name="rec" id="email" placeholder="보낼 사람 이메일" />
 						</div>
 
 						<div class="field">
 							<label for="message">Message</label>
-							<textarea id="message" rows="6"></textarea>
+							<textarea name="content" id="message" rows="6"></textarea>
 						</div>
 						<ul class="actions">
 							<li><input type="submit" value="Send Message" class="special" /></li>
